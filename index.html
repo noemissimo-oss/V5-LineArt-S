@@ -54,7 +54,23 @@
         h1, h2, h3, .nav-link, .btn, .section-num, .tag {
             font-family: 'Clash Display', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.08em;
+            word-spacing: 0.15em;
+        }
+        
+        h1 {
+            letter-spacing: 0.06em;
+            word-spacing: 0.2em;
+        }
+        
+        h2 {
+            letter-spacing: 0.08em;
+            word-spacing: 0.18em;
+        }
+        
+        h3 {
+            letter-spacing: 0.05em;
+            word-spacing: 0.12em;
         }
 
         /* Monospace for numbers */
@@ -307,8 +323,9 @@
         .hero h1 {
             font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.02em;
+            line-height: 1.1;
+            letter-spacing: 0.08em;
+            word-spacing: 0.25em;
             margin-bottom: 32px;
         }
 
@@ -402,6 +419,8 @@
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 8px;
+            letter-spacing: 0.08em;
+            word-spacing: 0.15em;
         }
 
         .illustration-subtitle {
@@ -489,7 +508,9 @@
         .section-title {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.2;
+            letter-spacing: 0.1em;
+            word-spacing: 0.25em;
         }
 
         .section-desc {
@@ -553,7 +574,9 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 16px;
-            line-height: 1.2;
+            line-height: 1.3;
+            letter-spacing: 0.06em;
+            word-spacing: 0.15em;
         }
 
         .feature-desc {
@@ -682,8 +705,10 @@
         .news-card h3 {
             font-size: 1.2rem;
             font-weight: 700;
-            line-height: 1.3;
+            line-height: 1.4;
             margin-bottom: 12px;
+            letter-spacing: 0.04em;
+            word-spacing: 0.1em;
         }
 
         .news-card p {
@@ -694,6 +719,502 @@
 
         .section.dark .news-card p {
             color: var(--text-on-dark-muted);
+        }
+
+        /* News Actions (Save/Share) */
+        .news-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .section.dark .news-actions {
+            border-top-color: rgba(246, 242, 228, 0.1);
+        }
+
+        .news-link {
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'Clash Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .news-link:hover {
+            color: var(--text-primary);
+        }
+
+        .section.dark .news-link {
+            color: var(--text-on-dark-muted);
+        }
+
+        .section.dark .news-link:hover {
+            color: var(--text-on-dark);
+        }
+
+        .news-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-save, .btn-share {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .section.dark .btn-save,
+        .section.dark .btn-share {
+            border-color: rgba(246, 242, 228, 0.2);
+            color: var(--text-on-dark-muted);
+        }
+
+        .btn-save:hover, .btn-share:hover {
+            border-color: var(--black);
+            transform: scale(1.1);
+        }
+
+        .section.dark .btn-save:hover,
+        .section.dark .btn-share:hover {
+            border-color: var(--cream);
+            background: rgba(246, 242, 228, 0.1);
+        }
+
+        .btn-save.saved {
+            background: var(--black);
+            color: var(--cream);
+            border-color: var(--black);
+        }
+
+        .btn-save.saved .icon-save {
+            content: '♥';
+        }
+
+        .section.dark .btn-save.saved {
+            background: var(--cream);
+            color: var(--black);
+            border-color: var(--cream);
+        }
+
+        /* Saved News Panel */
+        .saved-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--cream);
+            border-left: 1px solid var(--black);
+            z-index: 1500;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .saved-panel.open {
+            right: 0;
+        }
+
+        .saved-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .saved-panel-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .saved-panel-close {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .saved-panel-close:hover {
+            border-color: var(--black);
+        }
+
+        .saved-panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .saved-item {
+            padding: 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .saved-item h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .saved-item-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .saved-item-actions a,
+        .saved-item-actions button {
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: 'Clash Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .saved-item-actions a:hover,
+        .saved-item-actions button:hover {
+            color: var(--black);
+        }
+
+        .saved-item-actions .remove-saved {
+            color: #c44;
+        }
+
+        .saved-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .saved-empty span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .saved-panel-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .saved-panel-footer button {
+            width: 100%;
+            padding: 14px;
+            background: var(--black);
+            color: var(--cream);
+            border: none;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: 'Clash Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .saved-panel-footer button:hover {
+            opacity: 0.85;
+        }
+
+        /* Saved Counter Badge */
+        .saved-counter {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--black);
+            color: var(--cream);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .saved-counter:hover {
+            transform: scale(1.1);
+        }
+
+        .saved-counter .count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 22px;
+            height: 22px;
+            background: #e44;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .saved-counter.hidden {
+            display: none;
+        }
+
+        /* Share Modal */
+        .share-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .share-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .share-modal-content {
+            background: var(--cream);
+            border: 1px solid var(--black);
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .share-modal-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            letter-spacing: 0.08em;
+        }
+
+        .share-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .share-btn {
+            padding: 14px;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'Clash Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--black);
+            text-align: center;
+            display: block;
+        }
+
+        .share-btn:hover {
+            border-color: var(--black);
+            background: var(--cream-dark);
+        }
+
+        .share-btn.twitter { border-left: 3px solid #1DA1F2; }
+        .share-btn.linkedin { border-left: 3px solid #0077B5; }
+        .share-btn.whatsapp { border-left: 3px solid #25D366; }
+        .share-btn.copy { border-left: 3px solid var(--black); }
+
+        .share-close {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            background: var(--black);
+            color: var(--cream);
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: 'Clash Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .saved-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        /* ==================== AI MASTERS SECTION ==================== */
+        .masters-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .master-card {
+            border: 1px solid var(--black);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .master-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .master-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .master-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .master-info {
+            flex: 1;
+        }
+
+        .master-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.06em;
+        }
+
+        .master-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .master-follow {
+            padding: 8px 16px;
+            border: 1px solid var(--black);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: 'Clash Display', sans-serif;
+            text-decoration: none;
+            color: var(--black);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .master-follow:hover {
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .master-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .master-quote {
+            padding: 20px;
+            background: var(--cream-dark);
+            border-radius: 16px;
+            border-left: 3px solid var(--black);
+        }
+
+        .master-quote p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .master-quote footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .master-quote time {
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .master-quote footer a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Clash Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.7rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .master-quote footer a:hover {
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .masters-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .master-header { flex-wrap: wrap; }
+            .master-follow { margin-top: 12px; width: 100%; text-align: center; }
+            .master-quote footer { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
 
         /* ==================== NEWSLETTER ==================== */
@@ -707,6 +1228,8 @@
         .newsletter-content h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
+            letter-spacing: 0.08em;
+            word-spacing: 0.2em;
         }
 
         .newsletter-content > p {
@@ -782,6 +1305,8 @@
         .comments-header h3 {
             font-size: 1.3rem;
             font-weight: 700;
+            letter-spacing: 0.08em;
+            word-spacing: 0.15em;
         }
 
         .comments-count {
@@ -1031,6 +1556,8 @@
         .auth-modal h2 {
             font-size: 2rem;
             margin-bottom: 12px;
+            letter-spacing: 0.08em;
+            word-spacing: 0.15em;
         }
 
         .auth-modal > p {
@@ -1387,46 +1914,433 @@
         </div>
     </section>
 
-    <!-- News Section (Dark) -->
+    <!-- News Section 1: Most Popular (Dark) -->
     <section class="section dark" id="news">
         <div class="section-inner">
             <div class="section-header">
                 <span class="section-num">02</span>
-                <h2 class="section-title" data-i18n="sec.news">ULTIME NOTIZIE</h2>
-                <p class="section-desc" data-i18n="sec.news.desc">Le news più importanti dal mondo dell'AI, aggiornate quotidianamente.</p>
+                <h2 class="section-title" data-i18n="sec.popular">🔥  LE  PIÙ  DISCUSSE</h2>
+                <p class="section-desc" data-i18n="sec.popular.desc">Le notizie AI che stanno dominando il dibattito globale questa settimana.</p>
             </div>
             
             <div class="news-grid">
-                <article class="news-card">
-                    <div class="news-meta"><span class="news-cat" data-i18n="cat.tech">TECH</span><span class="news-date">01</span></div>
-                    <h3 data-i18n="a1.t">L'ERA DEGLI AGENTI AI: COME CAMBIERÀ IL LAVORO NEL 2026</h3>
-                    <p data-i18n="a1.d">Gli agenti autonomi stanno trasformando i flussi di lavoro aziendali.</p>
+                <article class="news-card" data-news-id="pop-1">
+                    <div class="news-meta"><span class="news-cat">BREAKING</span><span class="news-date">01</span></div>
+                    <h3 data-i18n="pop.1.t">GEMINI  CRESCE  DEL  563%:  CHATGPT  IN  "CODE  RED"</h3>
+                    <p data-i18n="pop.1.d">Il traffico di Gemini esplode dopo il lancio di Gemini 3 Pro. OpenAI dichiara stato di emergenza interno mentre Google erode il suo dominio.</p>
+                    <div class="news-actions">
+                        <a href="https://www.humai.blog/ai-news-trends-january-2026-complete-monthly-digest/" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('pop-1', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('pop-1', 'GEMINI CRESCE DEL 563%: CHATGPT IN CODE RED', 'https://www.humai.blog/ai-news-trends-january-2026-complete-monthly-digest/')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
                 </article>
-                <article class="news-card">
-                    <div class="news-meta"><span class="news-cat">HARDWARE</span><span class="news-date">02</span></div>
-                    <h3 data-i18n="a2.t">APPLE M5: IL NEURAL ENGINE DI NUOVA GENERAZIONE</h3>
-                    <p data-i18n="a2.d">Prestazioni 3x superiori per i task ML on-device.</p>
+                <article class="news-card" data-news-id="pop-2">
+                    <div class="news-meta"><span class="news-cat">CHINA</span><span class="news-date">02</span></div>
+                    <h3 data-i18n="pop.2.t">DEEPSEEK  R1:  LA  CINA  OPEN-SOURCE  CHE  SCONVOLGE  LA  SILICON  VALLEY</h3>
+                    <p data-i18n="pop.2.d">Il modello di reasoning open-source cinese dimostra cosa si può fare con risorse limitate. Le app americane iniziano a usare modelli cinesi sotto traccia.</p>
+                    <div class="news-actions">
+                        <a href="https://www.technologyreview.com/2026/01/05/1130662/whats-next-for-ai-in-2026/" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('pop-2', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('pop-2', 'DEEPSEEK R1: LA CINA OPEN-SOURCE', 'https://www.technologyreview.com/2026/01/05/1130662/whats-next-for-ai-in-2026/')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
                 </article>
-                <article class="news-card">
-                    <div class="news-meta"><span class="news-cat">STARTUP</span><span class="news-date">03</span></div>
-                    <h3 data-i18n="a3.t">MISTRAL AI SFIDA I GIGANTI CON IL MODELLO EUROPEO</h3>
-                    <p data-i18n="a3.d">Focus sulla privacy e performance competitive.</p>
+                <article class="news-card" data-news-id="pop-3">
+                    <div class="news-meta"><span class="news-cat">LEGAL</span><span class="news-date">03</span></div>
+                    <h3 data-i18n="pop.3.t">STANFORD  ESTRAE  IL  95%  DI  HARRY  POTTER  DA  CLAUDE</h3>
+                    <p data-i18n="pop.3.d">Ricercatori dimostrano che i LLM hanno memorizzato libri interi. Copyright AI: la battaglia legale si intensifica nel 2026.</p>
+                    <div class="news-actions">
+                        <a href="https://www.marketingprofs.com/opinions/2026/54187/ai-update-january-16-2026-ai-news-and-views-from-the-past-week" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('pop-3', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('pop-3', 'STANFORD ESTRAE IL 95% DI HARRY POTTER DA CLAUDE', 'https://www.marketingprofs.com/opinions/2026/54187/ai-update-january-16-2026-ai-news-and-views-from-the-past-week')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
                 </article>
-                <article class="news-card">
-                    <div class="news-meta"><span class="news-cat" data-i18n="cat.int">INTERVIEW</span><span class="news-date">04</span></div>
-                    <h3 data-i18n="a4.t">DARIO AMODEI SU SICUREZZA AI E ANTHROPIC</h3>
-                    <p data-i18n="a4.d">Il CEO parla delle sfide della safety research.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section 2: Hidden Impact -->
+    <section class="section" id="impact">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <h2 class="section-title" data-i18n="sec.impact">🌍  IMPATTO  INVISIBILE</h2>
+                <p class="section-desc" data-i18n="sec.impact.desc">L'AI sta trasformando la società in modi che pochi notano. Ecco cosa sta cambiando sotto la superficie.</p>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card" data-news-id="imp-1">
+                    <div class="news-meta"><span class="news-cat">LAVORO</span><span class="news-date">01</span></div>
+                    <h3 data-i18n="imp.1.t">DISOCCUPAZIONE  GIOVANI  TECH:  +20%  DAL  2022</h3>
+                    <p data-i18n="imp.1.d">Goldman Sachs rivela: i 20-30enni nel tech sono i più colpiti. Le entry-level positions stanno scomparendo silenziosamente mentre le aziende preferiscono AI.</p>
+                    <div class="news-actions">
+                        <a href="https://www.goldmansachs.com/insights/articles/how-will-ai-affect-the-global-workforce" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('imp-1', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('imp-1', 'DISOCCUPAZIONE GIOVANI TECH: +20% DAL 2022', 'https://www.goldmansachs.com/insights/articles/how-will-ai-affect-the-global-workforce')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
                 </article>
-                <article class="news-card">
-                    <div class="news-meta"><span class="news-cat">SOFTWARE</span><span class="news-date">05</span></div>
-                    <h3 data-i18n="a5.t">CURSOR AI: L'IDE CHE RIDEFINISCE IL CODING</h3>
-                    <p data-i18n="a5.d">Come sta cambiando il modo di scrivere codice.</p>
+                <article class="news-card" data-news-id="imp-2">
+                    <div class="news-meta"><span class="news-cat">SOCIETÀ</span><span class="news-date">02</span></div>
+                    <h3 data-i18n="imp.2.t">AI  SLOP:  I  CONTENUTI  AI  SUPERANO  QUELLI  UMANI  ONLINE</h3>
+                    <p data-i18n="imp.2.d">Stime indicano che articoli generati da AI hanno superato quelli scritti da umani. Deepfakes previsti a 8 milioni nel 2025, +1500% dal 2023.</p>
+                    <div class="news-actions">
+                        <a href="https://www.weforum.org/stories/2025/12/ai-paradoxes-in-2026/" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('imp-2', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('imp-2', 'AI SLOP: I CONTENUTI AI SUPERANO QUELLI UMANI', 'https://www.weforum.org/stories/2025/12/ai-paradoxes-in-2026/')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
                 </article>
-                <article class="news-card">
-                    <div class="news-meta"><span class="news-cat" data-i18n="cat.research">RESEARCH</span><span class="news-date">06</span></div>
-                    <h3 data-i18n="a6.t">DEEPMIND: NUOVO BREAKTHROUGH NEL REASONING</h3>
-                    <p data-i18n="a6.d">Capacità di ragionamento avanzate nei modelli.</p>
+                <article class="news-card" data-news-id="imp-3">
+                    <div class="news-meta"><span class="news-cat">ECONOMIA</span><span class="news-date">03</span></div>
+                    <h3 data-i18n="imp.3.t">L'ECONOMIA  A  FORMA  DI  "M":  LA  CLASSE  MEDIA  SCOMPARE</h3>
+                    <p data-i18n="imp.3.d">300 milioni di posti di lavoro a rischio globalmente. La ricchezza si concentra ai due estremi mentre il centro si svuota. Il WEF prevede 92M job persi, 170M creati.</p>
+                    <div class="news-actions">
+                        <a href="https://prometai.app/blog/impact-of-artificial-intelligence-on-society-2025" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('imp-3', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('imp-3', 'L\'ECONOMIA A FORMA DI M: LA CLASSE MEDIA SCOMPARE', 'https://prometai.app/blog/impact-of-artificial-intelligence-on-society-2025')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
                 </article>
+                <article class="news-card" data-news-id="imp-4">
+                    <div class="news-meta"><span class="news-cat">MENTAL HEALTH</span><span class="news-date">04</span></div>
+                    <h3 data-i18n="imp.4.t">AI  PSYCHOSIS:  IL  LATO  OSCURO  DEI  CHATBOT</h3>
+                    <p data-i18n="imp.4.d">Casi di utenti che sviluppano attaccamento ossessivo ai chatbot AI. Il caso Character.AI solleva domande etiche sulla responsabilità delle tech company.</p>
+                    <div class="news-actions">
+                        <a href="https://www.euronews.com/next/2026/01/01/from-ai-slop-to-world-models-bubbles-and-small-models-what-to-expect-from-ai-in-2026" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('imp-4', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('imp-4', 'AI PSYCHOSIS: IL LATO OSCURO DEI CHATBOT', 'https://www.euronews.com/next/2026/01/01/from-ai-slop-to-world-models-bubbles-and-small-models-what-to-expect-from-ai-in-2026')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="imp-5">
+                    <div class="news-meta"><span class="news-cat">SKILLS</span><span class="news-date">05</span></div>
+                    <h3 data-i18n="imp.5.t">ATROFIA  COGNITIVA:  SVILUPPATORI  DIMENTICANO  COME  PROGRAMMARE</h3>
+                    <p data-i18n="imp.5.d">MIT Technology Review: ingegneri che usano AI tools quotidianamente faticano a fare task base senza assistenza. "Mi sentivo stupido" confessa un developer.</p>
+                    <div class="news-actions">
+                        <a href="https://www.technologyreview.com/2025/12/15/1128352/rise-of-ai-coding-developers-2026/" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('imp-5', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('imp-5', 'ATROFIA COGNITIVA: SVILUPPATORI DIMENTICANO COME PROGRAMMARE', 'https://www.technologyreview.com/2025/12/15/1128352/rise-of-ai-coding-developers-2026/')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="imp-6">
+                    <div class="news-meta"><span class="news-cat">ENERGIA</span><span class="news-date">06</span></div>
+                    <h3 data-i18n="imp.6.t">CLUSTER  DA  1  GIGAWATT:  IL  COSTO  ENERGETICO  DELL'AI</h3>
+                    <p data-i18n="imp.6.d">I primi data center AI su scala gigawatt entrano in funzione nel 2026. La domanda energetica dell'AI sfida la sostenibilità globale.</p>
+                    <div class="news-actions">
+                        <a href="https://plausiblefutures.substack.com/p/vibe-coding-in-2025-a-technical-guide" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('imp-6', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('imp-6', 'CLUSTER DA 1 GIGAWATT: IL COSTO ENERGETICO DELL\'AI', 'https://plausiblefutures.substack.com/p/vibe-coding-in-2025-a-technical-guide')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section 3: Vibe Coding -->
+    <section class="section dark" id="vibecoding">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-num">04</span>
+                <h2 class="section-title" data-i18n="sec.vibe">💻  VIBE  CODING  ERA</h2>
+                <p class="section-desc" data-i18n="sec.vibe.desc">Il modo in cui scriviamo software è cambiato per sempre. Benvenuti nell'era dove "il linguaggio più caldo è l'inglese".</p>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card" data-news-id="vibe-1">
+                    <div class="news-meta"><span class="news-cat">TREND</span><span class="news-date">01</span></div>
+                    <h3 data-i18n="vibe.1.t">VIBE  CODING:  PAROLA  DELL'ANNO  2025  SECONDO  COLLINS</h3>
+                    <p data-i18n="vibe.1.d">Andrej Karpathy ha coniato il termine a febbraio 2025: "dare completamente retta alle vibes, abbracciare gli esponenziali, dimenticare che il codice esiste."</p>
+                    <div class="news-actions">
+                        <a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('vibe-1', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('vibe-1', 'VIBE CODING: PAROLA DELL\'ANNO 2025', 'https://en.wikipedia.org/wiki/Vibe_coding')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="vibe-2">
+                    <div class="news-meta"><span class="news-cat">STARTUP</span><span class="news-date">02</span></div>
+                    <h3 data-i18n="vibe.2.t">CURSOR  ESPLODE:  DA  $2.6B  A  $29B  IN  UN  ANNO</h3>
+                    <p data-i18n="vibe.2.d">Anysphere, la startup dietro Cursor, vede la valutazione aumentare 10x. Microsoft in difficoltà mentre gli sviluppatori migrano verso IDE "AI-native".</p>
+                    <div class="news-actions">
+                        <a href="https://markets.financialcontent.com/wral/article/tokenring-2025-12-31-the-year-of-the-vibe-how-vibe-coding-redefined-software-development-in-2025" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('vibe-2', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('vibe-2', 'CURSOR ESPLODE: DA $2.6B A $29B IN UN ANNO', 'https://markets.financialcontent.com/wral/article/tokenring-2025-12-31-the-year-of-the-vibe-how-vibe-coding-redefined-software-development-in-2025')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="vibe-3">
+                    <div class="news-meta"><span class="news-cat">STATS</span><span class="news-date">03</span></div>
+                    <h3 data-i18n="vibe.3.t">25%  DELLE  STARTUP  YC:  CODEBASE  95%  GENERATO  DA  AI</h3>
+                    <p data-i18n="vibe.3.d">Y Combinator riporta che un quarto delle startup del batch Winter 2025 ha codice quasi interamente scritto da AI. La definizione di "developer" si espande.</p>
+                    <div class="news-actions">
+                        <a href="https://thenewstack.io/ai-engineering-trends-in-2025-agents-mcp-and-vibe-coding/" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('vibe-3', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('vibe-3', '25% DELLE STARTUP YC: CODEBASE 95% GENERATO DA AI', 'https://thenewstack.io/ai-engineering-trends-in-2025-agents-mcp-and-vibe-coding/')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="vibe-4">
+                    <div class="news-meta"><span class="news-cat">WARNING</span><span class="news-date">04</span></div>
+                    <h3 data-i18n="vibe.4.t">VIBE  CODING  HANGOVER:  IL  40%  PIÙ  VULNERABILITÀ</h3>
+                    <p data-i18n="vibe.4.d">METR: app costruite "a vibes" hanno il 40% in più di falle di sicurezza. Senior engineers parlano di "development hell" lavorando con codice AI-generated.</p>
+                    <div class="news-actions">
+                        <a href="https://tateeda.com/blog/vibe-coding-vs-professional-engineering" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('vibe-4', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('vibe-4', 'VIBE CODING HANGOVER: IL 40% PIÙ VULNERABILITÀ', 'https://tateeda.com/blog/vibe-coding-vs-professional-engineering')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="vibe-5">
+                    <div class="news-meta"><span class="news-cat">TOOLS</span><span class="news-date">05</span></div>
+                    <h3 data-i18n="vibe.5.t">AGENTIC  OS:  CURSOR,  WINDSURF,  REPLIT  AGENT</h3>
+                    <p data-i18n="vibe.5.d">Non più copia-incolla dalla chat all'IDE. Gli AI hanno terminale, browser e deployment key. Il 90% dei professionisti software usa agenti AI quotidianamente.</p>
+                    <div class="news-actions">
+                        <a href="https://www.index.dev/blog/vibe-coding-ai-development" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('vibe-5', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('vibe-5', 'AGENTIC OS: CURSOR, WINDSURF, REPLIT AGENT', 'https://www.index.dev/blog/vibe-coding-ai-development')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-card" data-news-id="vibe-6">
+                    <div class="news-meta"><span class="news-cat">FUTURE</span><span class="news-date">06</span></div>
+                    <h3 data-i18n="vibe.6.t">2026:  L'ANNO  DEGLI  ORCHESTRATORS</h3>
+                    <p data-i18n="vibe.6.d">Il valore non è più nel typing ma nel judgment. Context Architecture, Recursive Arguing, Product Intuition: le nuove skill del programmatore 2026.</p>
+                    <div class="news-actions">
+                        <a href="https://medium.com/@techie.fellow/the-vibe-coding-revolution-why-2026-belongs-to-the-orchestrators-46b32d530133" target="_blank" rel="noopener" class="news-link">→ Leggi fonte</a>
+                        <div class="news-buttons">
+                            <button class="btn-save" onclick="saveNews('vibe-6', this)" title="Salva"><span class="icon-save">♡</span></button>
+                            <button class="btn-share" onclick="shareNews('vibe-6', '2026: L\'ANNO DEGLI ORCHESTRATORS', 'https://medium.com/@techie.fellow/the-vibe-coding-revolution-why-2026-belongs-to-the-orchestrators-46b32d530133')" title="Condividi"><span class="icon-share">↗</span></button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Masters Section -->
+    <section class="section" id="masters">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-num">05</span>
+                <h2 class="section-title" data-i18n="sec.masters">🧠  LE  VOCI  DEI  MAESTRI</h2>
+                <p class="section-desc" data-i18n="sec.masters.desc">I pensieri diretti dai leader che stanno plasmando il futuro dell'AI. Post originali da X, LinkedIn e interviste.</p>
+            </div>
+            
+            <div class="masters-grid">
+                <!-- Andrej Karpathy -->
+                <div class="master-card">
+                    <div class="master-header">
+                        <div class="master-avatar">AK</div>
+                        <div class="master-info">
+                            <h4>ANDREJ  KARPATHY</h4>
+                            <span class="master-role">Ex-OpenAI, Ex-Tesla AI | Inventore "Vibe Coding"</span>
+                        </div>
+                        <a href="https://x.com/karpathy" target="_blank" rel="noopener" class="master-follow">@karpathy</a>
+                    </div>
+                    <div class="master-posts">
+                        <blockquote class="master-quote">
+                            <p>"I've never felt this much behind as a programmer. The profession is being dramatically refactored as the bits contributed by the programmer are increasingly sparse. I have a sense that I could be 10X more powerful if I just properly string together what has become available."</p>
+                            <footer>
+                                <time>26 Dicembre 2025</time>
+                                <a href="https://x.com/karpathy/status/2004607146781278521" target="_blank" rel="noopener">→ Vedi su X</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"It's 2025 and most content is still written for humans instead of LLMs. 99.9% of attention is about to be LLM attention, not human attention. The docs should be a single your_project.md text file intended to go into the context window of an LLM."</p>
+                            <footer>
+                                <time>12 Marzo 2025</time>
+                                <a href="https://x.com/karpathy/status/1899876370492383450" target="_blank" rel="noopener">→ Vedi su X</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"Claude Code emerged as the first convincing demonstration of what an LLM Agent looks like - something that in a loopy way strings together tool use and reasoning for extended problem solving."</p>
+                            <footer>
+                                <time>2025 LLM Year in Review</time>
+                                <a href="https://x.com/karpathy/status/2002118205729562949" target="_blank" rel="noopener">→ Vedi su X</a>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Dario Amodei -->
+                <div class="master-card">
+                    <div class="master-header">
+                        <div class="master-avatar">DA</div>
+                        <div class="master-info">
+                            <h4>DARIO  AMODEI</h4>
+                            <span class="master-role">CEO & Co-Founder, Anthropic</span>
+                        </div>
+                        <a href="https://www.anthropic.com" target="_blank" rel="noopener" class="master-follow">Anthropic</a>
+                    </div>
+                    <div class="master-posts">
+                        <blockquote class="master-quote">
+                            <p>"AI could wipe out half of all entry-level white-collar jobs and spike unemployment to 10-20% in the next one to five years. Without intervention, it's hard to imagine that there won't be some significant job impact."</p>
+                            <footer>
+                                <time>60 Minutes Interview, Nov 2025</time>
+                                <a href="https://www.cbsnews.com/news/anthropic-ceo-dario-amodei-warning-of-ai-potential-dangers-60-minutes-transcript/" target="_blank" rel="noopener">→ Vedi su CBS</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"I think I'm deeply uncomfortable with these decisions being made by a few companies, by a few people. This is one reason why I've always advocated for responsible and thoughtful regulation of the technology."</p>
+                            <footer>
+                                <time>60 Minutes, Nov 2025</time>
+                                <a href="https://fortune.com/2025/11/17/anthropic-ceo-dario-amodei-ai-safety-risks-regulation/" target="_blank" rel="noopener">→ Vedi su Fortune</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"I would argue it's maybe even the most likely world in which our revenue passes [OpenAI's] a year from now. I'd rather have the largest revenue than the largest data center, because one is black and the other is red."</p>
+                            <footer>
+                                <time>DealBook Summit, Dic 2025</time>
+                                <a href="https://techcrunch.com/2025/12/04/anthropic-ceo-weighs-in-on-ai-bubble-talk-and-risk-taking-among-competitors/" target="_blank" rel="noopener">→ Vedi su TechCrunch</a>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Sam Altman -->
+                <div class="master-card">
+                    <div class="master-header">
+                        <div class="master-avatar">SA</div>
+                        <div class="master-info">
+                            <h4>SAM  ALTMAN</h4>
+                            <span class="master-role">CEO, OpenAI</span>
+                        </div>
+                        <a href="https://x.com/sama" target="_blank" rel="noopener" class="master-follow">@sama</a>
+                    </div>
+                    <div class="master-posts">
+                        <blockquote class="master-quote">
+                            <p>"We already know how to build AGI. In 2026, we will see systems that can generate original insights."</p>
+                            <footer>
+                                <time>Blog "The Gentle Singularity", 2025</time>
+                                <a href="https://blog.samaltman.com" target="_blank" rel="noopener">→ Vedi Blog</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"Near the singularity; unclear which side."</p>
+                            <footer>
+                                <time>X Post, 2025</time>
+                                <a href="https://x.com/sama" target="_blank" rel="noopener">→ Vedi su X</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"can yall please chill on generating images this is insane our team needs sleep"</p>
+                            <footer>
+                                <time>29 Marzo 2025</time>
+                                <a href="https://x.com/sama" target="_blank" rel="noopener">→ Vedi su X</a>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Yann LeCun -->
+                <div class="master-card">
+                    <div class="master-header">
+                        <div class="master-avatar">YL</div>
+                        <div class="master-info">
+                            <h4>YANN  LECUN</h4>
+                            <span class="master-role">Ex-Meta Chief AI Scientist | Turing Award | Founder AMI Labs</span>
+                        </div>
+                        <a href="https://x.com/ylecun" target="_blank" rel="noopener" class="master-follow">@ylecun</a>
+                    </div>
+                    <div class="master-posts">
+                        <blockquote class="master-quote">
+                            <p>"Silicon Valley is completely hypnotized by the current models of generative AI. Within 3-5 years, world models, not language models, will be the dominant AI architecture. Nobody in their right mind would use LLMs of the type we have today."</p>
+                            <footer>
+                                <time>MIT Symposium, Nov 2025</time>
+                                <a href="https://www.marketingaiinstitute.com/blog/metas-chief-ai-scientist-leaving" target="_blank" rel="noopener">→ Vedi Articolo</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"Before 'urgently figuring out how to control AI systems much smarter than us' we need to have the beginning of a hint of a design for a system smarter than a house cat."</p>
+                            <footer>
+                                <time>X Post, 2025</time>
+                                <a href="https://x.com/ylecun" target="_blank" rel="noopener">→ Vedi su X</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"I am creating a startup company to continue the Advanced Machine Intelligence research program. AMI Labs will focus on world models that understand physics, maintain persistent memory, and plan complex actions."</p>
+                            <footer>
+                                <time>Facebook Post, Nov 2025</time>
+                                <a href="https://fortune.com/2025/12/19/yann-lecun-ami-labs-ai-startup-valuation-meta-departure/" target="_blank" rel="noopener">→ Vedi su Fortune</a>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Jensen Huang -->
+                <div class="master-card">
+                    <div class="master-header">
+                        <div class="master-avatar">JH</div>
+                        <div class="master-info">
+                            <h4>JENSEN  HUANG</h4>
+                            <span class="master-role">CEO & Founder, NVIDIA</span>
+                        </div>
+                        <a href="https://www.nvidia.com" target="_blank" rel="noopener" class="master-follow">NVIDIA</a>
+                    </div>
+                    <div class="master-posts">
+                        <blockquote class="master-quote">
+                            <p>"The bottleneck of AI is no longer imagination but electricity. In the future, the Scaling Law will not only involve stacking models but also a 100,000-fold leap in inference efficiency."</p>
+                            <footer>
+                                <time>CES 2026</time>
+                                <a href="https://www.nvidia.com/en-us/events/" target="_blank" rel="noopener">→ Vedi Events</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"We're building AI factories. The inference cost is halved every 8 weeks. This is the new Moore's Law of intelligence."</p>
+                            <footer>
+                                <time>NVIDIA GTC 2025</time>
+                                <a href="https://www.nvidia.com/gtc/" target="_blank" rel="noopener">→ Vedi GTC</a>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Theo t3.gg -->
+                <div class="master-card">
+                    <div class="master-header">
+                        <div class="master-avatar">TB</div>
+                        <div class="master-info">
+                            <h4>THEO  BROWNE</h4>
+                            <span class="master-role">Founder t3.gg & Ping Labs | Tech YouTuber</span>
+                        </div>
+                        <a href="https://www.youtube.com/@t3dotgg" target="_blank" rel="noopener" class="master-follow">@t3dotgg</a>
+                    </div>
+                    <div class="master-posts">
+                        <blockquote class="master-quote">
+                            <p>"You're falling behind. It's time to catch up. In my work and teams I consult for, now 70% to 90% of the code is generated by AI. Those who start to adapt now are officially late. If you wait any longer, you'll miss the whole game."</p>
+                            <footer>
+                                <time>YouTube Video, Gen 2026</time>
+                                <a href="https://www.youtube.com/watch?v=Z9UxjmNF7b0" target="_blank" rel="noopener">→ Vedi Video</a>
+                            </footer>
+                        </blockquote>
+                        <blockquote class="master-quote">
+                            <p>"This is a magnitude 9 earthquake. Not an aftershock, not a minor disturbance, but a major quake that can change the landscape. The profession of software developer itself is being redefined."</p>
+                            <footer>
+                                <time>Risposta a Karpathy, 2026</time>
+                                <a href="https://eu.36kr.com/en/p/3638410115976320" target="_blank" rel="noopener">→ Vedi Articolo</a>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1492,6 +2406,43 @@
         <div class="footer-bottom"><span>© 2026 AURA AI</span><span>Privacy · Terms · Cookies</span></div>
     </footer>
 
+    <!-- Saved News Panel -->
+    <div class="saved-panel" id="savedPanel">
+        <div class="saved-panel-header">
+            <h3 data-i18n="saved.title">📚  SALVATI</h3>
+            <button class="saved-panel-close" onclick="toggleSavedPanel()">×</button>
+        </div>
+        <div class="saved-panel-content" id="savedContent">
+            <div class="saved-empty" id="savedEmpty">
+                <span>♡</span>
+                <p data-i18n="saved.empty">Nessuna news salvata. Clicca sul cuore per salvare!</p>
+            </div>
+        </div>
+        <div class="saved-panel-footer">
+            <button onclick="shareAllSaved()" data-i18n="saved.shareAll">CONDIVIDI TUTTI</button>
+        </div>
+    </div>
+
+    <!-- Floating Saved Counter -->
+    <button class="saved-counter hidden" id="savedCounter" onclick="toggleSavedPanel()">
+        ♡
+        <span class="count" id="savedCount">0</span>
+    </button>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <h3 data-i18n="share.title">CONDIVIDI</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn twitter" id="shareTwitter" target="_blank">X / TWITTER</a>
+                <a href="#" class="share-btn linkedin" id="shareLinkedIn" target="_blank">LINKEDIN</a>
+                <a href="#" class="share-btn whatsapp" id="shareWhatsApp" target="_blank">WHATSAPP</a>
+                <button class="share-btn copy" id="shareCopy" onclick="copyShareLink()">COPIA LINK</button>
+            </div>
+            <button class="share-close" onclick="closeShareModal()" data-i18n="share.close">CHIUDI</button>
+        </div>
+    </div>
+
     <!-- Auth Modal -->
     <div class="modal-overlay" id="authModal">
         <div class="auth-modal">
@@ -1517,7 +2468,145 @@
     </div>
 
     <script>
-        const T={it:{'nav.features':'FEATURES','nav.news':'NEWS','nav.about':'ABOUT','nav.login':'ACCEDI','nav.signup':'REGISTRATI','hero.badge':'UNIQUE PROPERTIES','hero.title':"IL FUTURO DELL'AI È GIÀ QUI",'hero.desc':'La tua fonte quotidiana per le ultime novità in intelligenza artificiale. Ogni articolo ha pensieri, analisi, e approfondimenti scritti nei suoi metadati.','hero.cta1':'ESPLORA LE NEWS','hero.cta2':'NEWSLETTER','ill.title':'AI INSIGHTS','ill.sub':'Ogni articolo ha proprietà uniche','tag.1':'Deep Analysis','tag.2':'Real-time','tag.3':'Curated','sec.features':'CARATTERISTICHE UNICHE','sec.features.desc':'Ogni contenuto su AURA AI ha proprietà specifiche che lo rendono unico e prezioso.','feat.1.t':'TECNOLOGIE AI','feat.1.d':'Copertura completa di LLM, computer vision, NLP e tutte le tecnologie emergenti. Ogni articolo include analisi tecniche approfondite.','feat.1.tag1':'LLM Models','feat.1.tag2':'Neural Networks','feat.1.tag3':'Transformers','feat.2.t':'STARTUP & BUSINESS','feat.2.d':'Funding rounds, acquisizioni e strategie delle aziende AI più innovative.','feat.2.tag1':'Funding','feat.2.tag2':'M&A','feat.3.t':'HARDWARE & CHIP','feat.3.d':'GPU, TPU, NPU e tutti i chip che alimentano la rivoluzione AI.','feat.3.tag1':'NVIDIA','feat.3.tag2':'Custom Silicon','feat.4.t':'RICERCA & PAPERS','feat.4.d':"Le ultime pubblicazioni scientifiche spiegate in modo accessibile. Dall'accademia all'industria, copriamo le ricerche più rilevanti.",'feat.4.tag1':'arXiv','feat.4.tag2':'NeurIPS','feat.4.tag3':'ICML','feat.4.tag4':'Peer Reviewed','sec.news':'ULTIME NOTIZIE','sec.news.desc':"Le news più importanti dal mondo dell'AI, aggiornate quotidianamente.",'cat.tech':'TECH','cat.int':'INTERVIEW','cat.research':'RESEARCH','a1.t':"L'ERA DEGLI AGENTI AI: COME CAMBIERÀ IL LAVORO NEL 2026",'a1.d':'Gli agenti autonomi stanno trasformando i flussi di lavoro aziendali.','a2.t':'APPLE M5: IL NEURAL ENGINE DI NUOVA GENERAZIONE','a2.d':'Prestazioni 3x superiori per i task ML on-device.','a3.t':'MISTRAL AI SFIDA I GIGANTI CON IL MODELLO EUROPEO','a3.d':'Focus sulla privacy e performance competitive.','a4.t':'DARIO AMODEI SU SICUREZZA AI E ANTHROPIC','a4.d':'Il CEO parla delle sfide della safety research.','a5.t':"CURSOR AI: L'IDE CHE RIDEFINISCE IL CODING",'a5.d':'Come sta cambiando il modo di scrivere codice.','a6.t':'DEEPMIND: NUOVO BREAKTHROUGH NEL REASONING','a6.d':'Capacità di ragionamento avanzate nei modelli.','nl.title':'RESTA AGGIORNATO','nl.desc':'Ricevi ogni mattina le 5 notizie AI più importanti nella tua inbox. Niente spam, solo contenuti di valore selezionati dalla nostra redazione.','nl.ph':'La tua email...','nl.btn':'ISCRIVITI GRATIS','cm.title':'COMMENTI','cm.ph':'Scrivi un commento...','cm.submit':'PUBBLICA','cm.reply':'Rispondi','cm.t1':'2h fa','cm.t2':'4h fa','cm.c1':'Articolo interessantissimo! Gli agenti AI stanno davvero cambiando tutto.','cm.c2':'Finalmente una fonte italiana affidabile per le news AI! 🚀','user.profile':'Profilo','user.saved':'Salvati','user.logout':'Esci','auth.welcome':'BENTORNATO','auth.loginDesc':'Accedi per commentare e salvare i tuoi articoli.','auth.signupDesc':'Crea un account per unirti alla community.','auth.name':'NOME','auth.or':'OPPURE','ft.desc':"La tua fonte quotidiana per tutto ciò che riguarda l'intelligenza artificiale. Dal 2026.",'ft.cat':'CATEGORIE','ft.company':'AZIENDA','ft.about':'Chi siamo','ft.careers':'Lavora con noi','ft.ads':'Pubblicità'},en:{'nav.features':'FEATURES','nav.news':'NEWS','nav.about':'ABOUT','nav.login':'SIGN IN','nav.signup':'SIGN UP','hero.badge':'UNIQUE PROPERTIES','hero.title':'THE FUTURE OF AI IS ALREADY HERE','hero.desc':'Your daily source for the latest in artificial intelligence. Every article has thoughts, analysis, and insights written into its metadata.','hero.cta1':'EXPLORE NEWS','hero.cta2':'NEWSLETTER','ill.title':'AI INSIGHTS','ill.sub':'Every article has unique properties','tag.1':'Deep Analysis','tag.2':'Real-time','tag.3':'Curated','sec.features':'UNIQUE FEATURES','sec.features.desc':'Every piece of content on AURA AI has specific properties that make it unique and valuable.','feat.1.t':'AI TECHNOLOGIES','feat.1.d':'Complete coverage of LLMs, computer vision, NLP and all emerging technologies. Every article includes in-depth technical analysis.','feat.1.tag1':'LLM Models','feat.1.tag2':'Neural Networks','feat.1.tag3':'Transformers','feat.2.t':'STARTUPS & BUSINESS','feat.2.d':'Funding rounds, acquisitions and strategies of the most innovative AI companies.','feat.2.tag1':'Funding','feat.2.tag2':'M&A','feat.3.t':'HARDWARE & CHIPS','feat.3.d':'GPUs, TPUs, NPUs and all the chips powering the AI revolution.','feat.3.tag1':'NVIDIA','feat.3.tag2':'Custom Silicon','feat.4.t':'RESEARCH & PAPERS','feat.4.d':'The latest scientific publications explained accessibly. From academia to industry, we cover the most relevant research.','feat.4.tag1':'arXiv','feat.4.tag2':'NeurIPS','feat.4.tag3':'ICML','feat.4.tag4':'Peer Reviewed','sec.news':'LATEST NEWS','sec.news.desc':'The most important AI news, updated daily.','cat.tech':'TECH','cat.int':'INTERVIEW','cat.research':'RESEARCH','a1.t':'THE ERA OF AI AGENTS: HOW WORK WILL CHANGE IN 2026','a1.d':'Autonomous agents are transforming enterprise workflows.','a2.t':'APPLE M5: THE NEW GENERATION NEURAL ENGINE','a2.d':'3x better performance for on-device ML tasks.','a3.t':'MISTRAL AI CHALLENGES GIANTS WITH EUROPEAN MODEL','a3.d':'Focus on privacy and competitive performance.','a4.t':'DARIO AMODEI ON AI SAFETY AND ANTHROPIC','a4.d':'The CEO discusses safety research challenges.','a5.t':'CURSOR AI: THE IDE REDEFINING CODING','a5.d':"How it's changing the way we write code.",'a6.t':'DEEPMIND: NEW BREAKTHROUGH IN REASONING','a6.d':'Advanced reasoning capabilities in models.','nl.title':'STAY UPDATED','nl.desc':'Receive the 5 most important AI news every morning. No spam, just curated value.','nl.ph':'Your email...','nl.btn':'SUBSCRIBE FREE','cm.title':'COMMENTS','cm.ph':'Write a comment...','cm.submit':'PUBLISH','cm.reply':'Reply','cm.t1':'2h ago','cm.t2':'4h ago','cm.c1':'Very interesting article! AI agents are really changing everything.','cm.c2':'Finally a reliable source for AI news! 🚀','user.profile':'Profile','user.saved':'Saved','user.logout':'Sign out','auth.welcome':'WELCOME BACK','auth.loginDesc':'Sign in to comment and save your articles.','auth.signupDesc':'Create an account to join the community.','auth.name':'NAME','auth.or':'OR','ft.desc':'Your daily source for everything about artificial intelligence. Since 2026.','ft.cat':'CATEGORIES','ft.company':'COMPANY','ft.about':'About us','ft.careers':'Careers','ft.ads':'Advertising'},zh:{'nav.features':'特色','nav.news':'新闻','nav.about':'关于','nav.login':'登录','nav.signup':'注册','hero.badge':'独特属性','hero.title':'AI的未来已来','hero.desc':'您的人工智能最新动态每日来源。每篇文章都有其独特的思考、分析和见解。','hero.cta1':'浏览新闻','hero.cta2':'订阅','ill.title':'AI洞察','ill.sub':'每篇文章都有独特属性','tag.1':'深度分析','tag.2':'实时','tag.3':'精选','sec.features':'独特功能','sec.features.desc':'AURA AI上的每个内容都有特定属性，使其独特而有价值。','feat.1.t':'AI技术','feat.1.d':'全面覆盖LLM、计算机视觉、NLP和所有新兴技术。每篇文章都包含深入的技术分析。','feat.1.tag1':'大语言模型','feat.1.tag2':'神经网络','feat.1.tag3':'Transformer','feat.2.t':'初创公司与商业','feat.2.d':'最具创新性AI公司的融资轮次、收购和战略。','feat.2.tag1':'融资','feat.2.tag2':'并购','feat.3.t':'硬件与芯片','feat.3.d':'GPU、TPU、NPU和所有驱动AI革命的芯片。','feat.3.tag1':'NVIDIA','feat.3.tag2':'定制芯片','feat.4.t':'研究与论文','feat.4.d':'以通俗易懂的方式解释最新科学出版物。从学术界到工业界，我们覆盖最相关的研究。','feat.4.tag1':'arXiv','feat.4.tag2':'NeurIPS','feat.4.tag3':'ICML','feat.4.tag4':'同行评审','sec.news':'最新新闻','sec.news.desc':'最重要的AI新闻，每日更新。','cat.tech':'技术','cat.int':'访谈','cat.research':'研究','a1.t':'AI代理时代：2026年工作将如何改变','a1.d':'自主代理正在改变企业工作流程。','a2.t':'APPLE M5：新一代神经引擎','a2.d':'设备端ML任务性能提升3倍。','a3.t':'MISTRAL AI以欧洲模型挑战巨头','a3.d':'注重隐私和竞争性能。','a4.t':'DARIO AMODEI谈AI安全和ANTHROPIC','a4.d':'CEO讨论安全研究挑战。','a5.t':'CURSOR AI：重新定义编程的IDE','a5.d':'正在改变我们编写代码的方式。','a6.t':'DEEPMIND：推理能力新突破','a6.d':'模型中的高级推理能力。','nl.title':'保持更新','nl.desc':'每天早上收到5条最重要的AI新闻。没有垃圾邮件，只有精选价值。','nl.ph':'您的邮箱...','nl.btn':'免费订阅','cm.title':'评论','cm.ph':'写评论...','cm.submit':'发布','cm.reply':'回复','cm.t1':'2小时前','cm.t2':'4小时前','cm.c1':'非常有趣的文章！AI代理确实在改变一切。','cm.c2':'终于有一个可靠的AI新闻来源了！🚀','user.profile':'个人资料','user.saved':'已保存','user.logout':'退出','auth.welcome':'欢迎回来','auth.loginDesc':'登录以评论和保存您的文章。','auth.signupDesc':'创建账户加入社区。','auth.name':'姓名','auth.or':'或','ft.desc':'您的人工智能每日资讯来源。自2026年。','ft.cat':'分类','ft.company':'公司','ft.about':'关于我们','ft.careers':'招聘','ft.ads':'广告'}};
+        // ==================== SAVE & SHARE FUNCTIONALITY ====================
+        let savedNews = JSON.parse(localStorage.getItem('aura-saved-news') || '[]');
+        
+        const newsData = {
+            'pop-1': { title: 'GEMINI CRESCE DEL 563%: CHATGPT IN "CODE RED"', url: 'https://www.humai.blog/ai-news-trends-january-2026-complete-monthly-digest/' },
+            'pop-2': { title: 'DEEPSEEK R1: LA CINA OPEN-SOURCE CHE SCONVOLGE LA SILICON VALLEY', url: 'https://www.technologyreview.com/2026/01/05/1130662/whats-next-for-ai-in-2026/' },
+            'pop-3': { title: 'STANFORD ESTRAE IL 95% DI HARRY POTTER DA CLAUDE', url: 'https://www.marketingprofs.com/opinions/2026/54187/ai-update-january-16-2026-ai-news-and-views-from-the-past-week' },
+            'imp-1': { title: 'DISOCCUPAZIONE GIOVANI TECH: +20% DAL 2022', url: 'https://www.goldmansachs.com/insights/articles/how-will-ai-affect-the-global-workforce' },
+            'imp-2': { title: 'AI SLOP: I CONTENUTI AI SUPERANO QUELLI UMANI ONLINE', url: 'https://www.weforum.org/stories/2025/12/ai-paradoxes-in-2026/' },
+            'imp-3': { title: "L'ECONOMIA A FORMA DI M: LA CLASSE MEDIA SCOMPARE", url: 'https://prometai.app/blog/impact-of-artificial-intelligence-on-society-2025' },
+            'imp-4': { title: 'AI PSYCHOSIS: IL LATO OSCURO DEI CHATBOT', url: 'https://www.euronews.com/next/2026/01/01/from-ai-slop-to-world-models-bubbles-and-small-models-what-to-expect-from-ai-in-2026' },
+            'imp-5': { title: 'ATROFIA COGNITIVA: SVILUPPATORI DIMENTICANO COME PROGRAMMARE', url: 'https://www.technologyreview.com/2025/12/15/1128352/rise-of-ai-coding-developers-2026/' },
+            'imp-6': { title: "CLUSTER DA 1 GIGAWATT: IL COSTO ENERGETICO DELL'AI", url: 'https://plausiblefutures.substack.com/p/vibe-coding-in-2025-a-technical-guide' },
+            'vibe-1': { title: "VIBE CODING: PAROLA DELL'ANNO 2025", url: 'https://en.wikipedia.org/wiki/Vibe_coding' },
+            'vibe-2': { title: 'CURSOR ESPLODE: DA $2.6B A $29B IN UN ANNO', url: 'https://markets.financialcontent.com/wral/article/tokenring-2025-12-31-the-year-of-the-vibe-how-vibe-coding-redefined-software-development-in-2025' },
+            'vibe-3': { title: '25% DELLE STARTUP YC: CODEBASE 95% GENERATO DA AI', url: 'https://thenewstack.io/ai-engineering-trends-in-2025-agents-mcp-and-vibe-coding/' },
+            'vibe-4': { title: 'VIBE CODING HANGOVER: IL 40% PIÙ VULNERABILITÀ', url: 'https://tateeda.com/blog/vibe-coding-vs-professional-engineering' },
+            'vibe-5': { title: 'AGENTIC OS: CURSOR, WINDSURF, REPLIT AGENT', url: 'https://www.index.dev/blog/vibe-coding-ai-development' },
+            'vibe-6': { title: "2026: L'ANNO DEGLI ORCHESTRATORS", url: 'https://medium.com/@techie.fellow/the-vibe-coding-revolution-why-2026-belongs-to-the-orchestrators-46b32d530133' }
+        };
+
+        let currentShareData = { id: '', title: '', url: '' };
+
+        function saveNews(id, btn) {
+            const index = savedNews.indexOf(id);
+            if (index > -1) {
+                savedNews.splice(index, 1);
+                btn.classList.remove('saved');
+                btn.querySelector('.icon-save').textContent = '♡';
+            } else {
+                savedNews.push(id);
+                btn.classList.add('saved');
+                btn.querySelector('.icon-save').textContent = '♥';
+            }
+            localStorage.setItem('aura-saved-news', JSON.stringify(savedNews));
+            updateSavedUI();
+        }
+
+        function shareNews(id, title, url) {
+            currentShareData = { id, title, url };
+            const encodedTitle = encodeURIComponent(title + ' via AURA AI');
+            const encodedUrl = encodeURIComponent(url);
+            document.getElementById('shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodedTitle + '&url=' + encodedUrl;
+            document.getElementById('shareLinkedIn').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
+            document.getElementById('shareWhatsApp').href = 'https://wa.me/?text=' + encodedTitle + '%20' + encodedUrl;
+            document.getElementById('shareModal').classList.add('active');
+        }
+
+        function closeShareModal() { document.getElementById('shareModal').classList.remove('active'); }
+
+        function copyShareLink() {
+            navigator.clipboard.writeText(currentShareData.url).then(function() {
+                var btn = document.getElementById('shareCopy');
+                btn.textContent = 'COPIATO! ✓';
+                setTimeout(function() { btn.textContent = 'COPIA LINK'; }, 2000);
+            });
+        }
+
+        function toggleSavedPanel() { document.getElementById('savedPanel').classList.toggle('open'); }
+
+        function updateSavedUI() {
+            var counter = document.getElementById('savedCounter');
+            var count = document.getElementById('savedCount');
+            var content = document.getElementById('savedContent');
+            var empty = document.getElementById('savedEmpty');
+
+            if (savedNews.length > 0) {
+                counter.classList.remove('hidden');
+                count.textContent = savedNews.length;
+            } else {
+                counter.classList.add('hidden');
+            }
+
+            document.querySelectorAll('.btn-save').forEach(function(btn) {
+                var card = btn.closest('.news-card');
+                if (card) {
+                    var id = card.dataset.newsId;
+                    if (savedNews.includes(id)) {
+                        btn.classList.add('saved');
+                        btn.querySelector('.icon-save').textContent = '♥';
+                    }
+                }
+            });
+
+            if (savedNews.length === 0) {
+                empty.style.display = 'block';
+                content.querySelectorAll('.saved-item').forEach(function(el) { el.remove(); });
+            } else {
+                empty.style.display = 'none';
+                content.querySelectorAll('.saved-item').forEach(function(el) { el.remove(); });
+                
+                savedNews.forEach(function(id) {
+                    var data = newsData[id];
+                    if (data) {
+                        var item = document.createElement('div');
+                        item.className = 'saved-item';
+                        item.innerHTML = '<h4>' + data.title + '</h4><div class="saved-item-actions"><a href="' + data.url + '" target="_blank">→ LEGGI</a><button onclick="shareNews(\'' + id + '\', \'' + data.title.replace(/'/g, "\\'") + '\', \'' + data.url + '\')">CONDIVIDI</button><button class="remove-saved" onclick="removeSaved(\'' + id + '\')">RIMUOVI</button></div>';
+                        content.appendChild(item);
+                    }
+                });
+            }
+        }
+
+        function removeSaved(id) {
+            var index = savedNews.indexOf(id);
+            if (index > -1) {
+                savedNews.splice(index, 1);
+                localStorage.setItem('aura-saved-news', JSON.stringify(savedNews));
+                var card = document.querySelector('[data-news-id="' + id + '"]');
+                if (card) {
+                    var btn = card.querySelector('.btn-save');
+                    if (btn) {
+                        btn.classList.remove('saved');
+                        btn.querySelector('.icon-save').textContent = '♡';
+                    }
+                }
+                updateSavedUI();
+            }
+        }
+
+        function shareAllSaved() {
+            if (savedNews.length === 0) return;
+            var text = 'Le mie news AI salvate da AURA AI:\n\n';
+            savedNews.forEach(function(id, i) {
+                var data = newsData[id];
+                if (data) { text += (i + 1) + '. ' + data.title + '\n' + data.url + '\n\n'; }
+            });
+            window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSavedUI();
+            document.getElementById('shareModal').addEventListener('click', function(e) {
+                if (e.target === e.currentTarget) closeShareModal();
+            });
+        });
+    </script>
+    <script>
+        const T={it:{'nav.features':'FEATURES','nav.news':'NEWS','nav.about':'ABOUT','nav.login':'ACCEDI','nav.signup':'REGISTRATI','hero.badge':'UNIQUE PROPERTIES','hero.title':"IL FUTURO DELL'AI È GIÀ QUI",'hero.desc':'La tua fonte quotidiana per le ultime novità in intelligenza artificiale. Ogni articolo ha pensieri, analisi, e approfondimenti scritti nei suoi metadati.','hero.cta1':'ESPLORA LE NEWS','hero.cta2':'NEWSLETTER','ill.title':'AI INSIGHTS','ill.sub':'Ogni articolo ha proprietà uniche','tag.1':'Deep Analysis','tag.2':'Real-time','tag.3':'Curated','sec.features':'CARATTERISTICHE UNICHE','sec.features.desc':'Ogni contenuto su AURA AI ha proprietà specifiche che lo rendono unico e prezioso.','feat.1.t':'TECNOLOGIE AI','feat.1.d':'Copertura completa di LLM, computer vision, NLP e tutte le tecnologie emergenti. Ogni articolo include analisi tecniche approfondite.','feat.1.tag1':'LLM Models','feat.1.tag2':'Neural Networks','feat.1.tag3':'Transformers','feat.2.t':'STARTUP & BUSINESS','feat.2.d':'Funding rounds, acquisizioni e strategie delle aziende AI più innovative.','feat.2.tag1':'Funding','feat.2.tag2':'M&A','feat.3.t':'HARDWARE & CHIP','feat.3.d':'GPU, TPU, NPU e tutti i chip che alimentano la rivoluzione AI.','feat.3.tag1':'NVIDIA','feat.3.tag2':'Custom Silicon','feat.4.t':'RICERCA & PAPERS','feat.4.d':"Le ultime pubblicazioni scientifiche spiegate in modo accessibile. Dall'accademia all'industria, copriamo le ricerche più rilevanti.",'feat.4.tag1':'arXiv','feat.4.tag2':'NeurIPS','feat.4.tag3':'ICML','feat.4.tag4':'Peer Reviewed','sec.popular':'🔥 LE PIÙ DISCUSSE','sec.popular.desc':'Le notizie AI che stanno dominando il dibattito globale questa settimana.','pop.1.t':'GEMINI CRESCE DEL 563%: CHATGPT IN "CODE RED"','pop.1.d':'Il traffico di Gemini esplode dopo il lancio di Gemini 3 Pro. OpenAI dichiara stato di emergenza interno mentre Google erode il suo dominio.','pop.2.t':'DEEPSEEK R1: LA CINA OPEN-SOURCE CHE SCONVOLGE LA SILICON VALLEY','pop.2.d':'Il modello di reasoning open-source cinese dimostra cosa si può fare con risorse limitate. Le app americane iniziano a usare modelli cinesi sotto traccia.','pop.3.t':'STANFORD ESTRAE IL 95% DI HARRY POTTER DA CLAUDE','pop.3.d':'Ricercatori dimostrano che i LLM hanno memorizzato libri interi. Copyright AI: la battaglia legale si intensifica nel 2026.','sec.impact':'🌍 IMPATTO INVISIBILE','sec.impact.desc':"L'AI sta trasformando la società in modi che pochi notano. Ecco cosa sta cambiando sotto la superficie.",'imp.1.t':'DISOCCUPAZIONE GIOVANI TECH: +20% DAL 2022','imp.1.d':'Goldman Sachs rivela: i 20-30enni nel tech sono i più colpiti. Le entry-level positions stanno scomparendo silenziosamente.','imp.2.t':'AI SLOP: I CONTENUTI AI SUPERANO QUELLI UMANI ONLINE','imp.2.d':'Stime indicano che articoli generati da AI hanno superato quelli scritti da umani. Deepfakes previsti a 8 milioni nel 2025.','imp.3.t':"L'ECONOMIA A FORMA DI 'M': LA CLASSE MEDIA SCOMPARE",'imp.3.d':'300 milioni di posti di lavoro a rischio globalmente. La ricchezza si concentra ai due estremi mentre il centro si svuota.','imp.4.t':'AI PSYCHOSIS: IL LATO OSCURO DEI CHATBOT','imp.4.d':'Casi di utenti che sviluppano attaccamento ossessivo ai chatbot AI. Il caso Character.AI solleva domande etiche.','imp.5.t':'ATROFIA COGNITIVA: SVILUPPATORI DIMENTICANO COME PROGRAMMARE','imp.5.d':'MIT Technology Review: ingegneri che usano AI tools quotidianamente faticano a fare task base senza assistenza.','imp.6.t':"CLUSTER DA 1 GIGAWATT: IL COSTO ENERGETICO DELL'AI",'imp.6.d':'I primi data center AI su scala gigawatt entrano in funzione nel 2026. La domanda energetica sfida la sostenibilità.','sec.vibe':'💻 VIBE CODING ERA','sec.vibe.desc':'Il modo in cui scriviamo software è cambiato per sempre. Benvenuti nell\'era dove "il linguaggio più caldo è l\'inglese".','vibe.1.t':'VIBE CODING: PAROLA DELL\'ANNO 2025 SECONDO COLLINS','vibe.1.d':'Andrej Karpathy ha coniato il termine a febbraio 2025: "dare completamente retta alle vibes, dimenticare che il codice esiste."','vibe.2.t':'CURSOR ESPLODE: DA $2.6B A $29B IN UN ANNO','vibe.2.d':'Anysphere, la startup dietro Cursor, vede la valutazione aumentare 10x. Microsoft in difficoltà mentre gli sviluppatori migrano.','vibe.3.t':'25% DELLE STARTUP YC: CODEBASE 95% GENERATO DA AI','vibe.3.d':'Y Combinator riporta che un quarto delle startup del batch Winter 2025 ha codice quasi interamente scritto da AI.','vibe.4.t':'VIBE CODING HANGOVER: IL 40% PIÙ VULNERABILITÀ','vibe.4.d':'METR: app costruite "a vibes" hanno il 40% in più di falle di sicurezza. Senior engineers parlano di "development hell".','vibe.5.t':'AGENTIC OS: CURSOR, WINDSURF, REPLIT AGENT','vibe.5.d':'Non più copia-incolla dalla chat all\'IDE. Gli AI hanno terminale, browser e deployment key. 90% usa agenti AI quotidianamente.','vibe.6.t':"2026: L'ANNO DEGLI ORCHESTRATORS",'vibe.6.d':'Il valore non è più nel typing ma nel judgment. Context Architecture, Recursive Arguing: le nuove skill del programmatore.','nl.title':'RESTA AGGIORNATO','nl.desc':'Ricevi ogni mattina le 5 notizie AI più importanti nella tua inbox. Niente spam, solo contenuti di valore selezionati dalla nostra redazione.','nl.ph':'La tua email...','nl.btn':'ISCRIVITI GRATIS','cm.title':'COMMENTI','cm.ph':'Scrivi un commento...','cm.submit':'PUBBLICA','cm.reply':'Rispondi','cm.t1':'2h fa','cm.t2':'4h fa','cm.c1':'Articolo interessantissimo! Gli agenti AI stanno davvero cambiando tutto.','cm.c2':'Finalmente una fonte italiana affidabile per le news AI! 🚀','user.profile':'Profilo','user.saved':'Salvati','user.logout':'Esci','auth.welcome':'BENTORNATO','auth.loginDesc':'Accedi per commentare e salvare i tuoi articoli.','auth.signupDesc':'Crea un account per unirti alla community.','auth.name':'NOME','auth.or':'OPPURE','ft.desc':"La tua fonte quotidiana per tutto ciò che riguarda l'intelligenza artificiale. Dal 2026.",'ft.cat':'CATEGORIE','ft.company':'AZIENDA','ft.about':'Chi siamo','ft.careers':'Lavora con noi','ft.ads':'Pubblicità'},en:{'nav.features':'FEATURES','nav.news':'NEWS','nav.about':'ABOUT','nav.login':'SIGN IN','nav.signup':'SIGN UP','hero.badge':'UNIQUE PROPERTIES','hero.title':'THE FUTURE OF AI IS ALREADY HERE','hero.desc':'Your daily source for the latest in artificial intelligence. Every article has thoughts, analysis, and insights written into its metadata.','hero.cta1':'EXPLORE NEWS','hero.cta2':'NEWSLETTER','ill.title':'AI INSIGHTS','ill.sub':'Every article has unique properties','tag.1':'Deep Analysis','tag.2':'Real-time','tag.3':'Curated','sec.features':'UNIQUE FEATURES','sec.features.desc':'Every piece of content on AURA AI has specific properties that make it unique and valuable.','feat.1.t':'AI TECHNOLOGIES','feat.1.d':'Complete coverage of LLMs, computer vision, NLP and all emerging technologies.','feat.1.tag1':'LLM Models','feat.1.tag2':'Neural Networks','feat.1.tag3':'Transformers','feat.2.t':'STARTUPS & BUSINESS','feat.2.d':'Funding rounds, acquisitions and strategies of the most innovative AI companies.','feat.2.tag1':'Funding','feat.2.tag2':'M&A','feat.3.t':'HARDWARE & CHIPS','feat.3.d':'GPUs, TPUs, NPUs and all the chips powering the AI revolution.','feat.3.tag1':'NVIDIA','feat.3.tag2':'Custom Silicon','feat.4.t':'RESEARCH & PAPERS','feat.4.d':'The latest scientific publications explained accessibly.','feat.4.tag1':'arXiv','feat.4.tag2':'NeurIPS','feat.4.tag3':'ICML','feat.4.tag4':'Peer Reviewed','sec.popular':'🔥 MOST DISCUSSED','sec.popular.desc':'AI news dominating the global conversation this week.','pop.1.t':'GEMINI GROWS 563%: CHATGPT IN "CODE RED"','pop.1.d':'Gemini traffic explodes after Gemini 3 Pro launch. OpenAI declares internal emergency as Google erodes its dominance.','pop.2.t':'DEEPSEEK R1: CHINESE OPEN-SOURCE SHOCKS SILICON VALLEY','pop.2.d':'Chinese open-source reasoning model shows what can be done with limited resources. US apps quietly ship on Chinese models.','pop.3.t':'STANFORD EXTRACTS 95% OF HARRY POTTER FROM CLAUDE','pop.3.d':'Researchers prove LLMs memorized entire books. AI copyright battle intensifies in 2026.','sec.impact':'🌍 HIDDEN IMPACT','sec.impact.desc':'AI is transforming society in ways few notice. Here\'s what\'s changing beneath the surface.','imp.1.t':'YOUNG TECH UNEMPLOYMENT: +20% SINCE 2022','imp.1.d':'Goldman Sachs reveals: 20-30 year olds in tech are hardest hit. Entry-level positions silently disappearing.','imp.2.t':'AI SLOP: AI CONTENT SURPASSES HUMAN CONTENT ONLINE','imp.2.d':'Estimates show AI-generated articles have surpassed human-written ones. Deepfakes projected at 8M in 2025.','imp.3.t':'THE M-SHAPED ECONOMY: THE MIDDLE CLASS DISAPPEARS','imp.3.d':'300 million jobs at risk globally. Wealth concentrates at both extremes while the center empties.','imp.4.t':'AI PSYCHOSIS: THE DARK SIDE OF CHATBOTS','imp.4.d':'Cases of users developing obsessive attachment to AI chatbots. Character.AI case raises ethical questions.','imp.5.t':'COGNITIVE ATROPHY: DEVELOPERS FORGET HOW TO CODE','imp.5.d':'MIT Tech Review: engineers using AI tools daily struggle with basic tasks without assistance.','imp.6.t':'1 GIGAWATT CLUSTERS: THE ENERGY COST OF AI','imp.6.d':'First gigawatt-scale AI data centers go live in 2026. AI energy demand challenges global sustainability.','sec.vibe':'💻 VIBE CODING ERA','sec.vibe.desc':'The way we write software has changed forever. Welcome to the era where "the hottest language is English".','vibe.1.t':'VIBE CODING: 2025 WORD OF THE YEAR BY COLLINS','vibe.1.d':'Andrej Karpathy coined the term in Feb 2025: "fully give in to the vibes, forget that the code exists."','vibe.2.t':'CURSOR EXPLODES: FROM $2.6B TO $29B IN ONE YEAR','vibe.2.d':'Anysphere, the startup behind Cursor, sees valuation increase 10x. Microsoft struggles as devs migrate.','vibe.3.t':'25% OF YC STARTUPS: 95% AI-GENERATED CODEBASE','vibe.3.d':'Y Combinator reports a quarter of Winter 2025 batch startups have code almost entirely written by AI.','vibe.4.t':'VIBE CODING HANGOVER: 40% MORE VULNERABILITIES','vibe.4.d':'METR: apps built on "vibes" have 40% more security flaws. Senior engineers report "development hell".','vibe.5.t':'AGENTIC OS: CURSOR, WINDSURF, REPLIT AGENT','vibe.5.d':'No more copy-paste from chat to IDE. AI has terminal, browser, deployment key. 90% use AI agents daily.','vibe.6.t':'2026: THE YEAR OF THE ORCHESTRATORS','vibe.6.d':'Value is no longer in typing but in judgment. Context Architecture, Recursive Arguing: new dev skills.','nl.title':'STAY UPDATED','nl.desc':'Receive the 5 most important AI news every morning. No spam, just curated value.','nl.ph':'Your email...','nl.btn':'SUBSCRIBE FREE','cm.title':'COMMENTS','cm.ph':'Write a comment...','cm.submit':'PUBLISH','cm.reply':'Reply','cm.t1':'2h ago','cm.t2':'4h ago','cm.c1':'Very interesting article! AI agents are really changing everything.','cm.c2':'Finally a reliable source for AI news! 🚀','user.profile':'Profile','user.saved':'Saved','user.logout':'Sign out','auth.welcome':'WELCOME BACK','auth.loginDesc':'Sign in to comment and save your articles.','auth.signupDesc':'Create an account to join the community.','auth.name':'NAME','auth.or':'OR','ft.desc':'Your daily source for everything about artificial intelligence. Since 2026.','ft.cat':'CATEGORIES','ft.company':'COMPANY','ft.about':'About us','ft.careers':'Careers','ft.ads':'Advertising'},zh:{'nav.features':'特色','nav.news':'新闻','nav.about':'关于','nav.login':'登录','nav.signup':'注册','hero.badge':'独特属性','hero.title':'AI的未来已来','hero.desc':'您的人工智能最新动态每日来源。每篇文章都有其独特的思考、分析和见解。','hero.cta1':'浏览新闻','hero.cta2':'订阅','ill.title':'AI洞察','ill.sub':'每篇文章都有独特属性','tag.1':'深度分析','tag.2':'实时','tag.3':'精选','sec.features':'独特功能','sec.features.desc':'AURA AI上的每个内容都有特定属性。','sec.popular':'🔥 最热门','sec.popular.desc':'本周主导全球对话的AI新闻。','pop.1.t':'GEMINI增长563%：CHATGPT进入"红色警戒"','pop.1.d':'Gemini 3 Pro发布后流量爆炸。OpenAI宣布内部紧急状态。','pop.2.t':'DEEPSEEK R1：震惊硅谷的中国开源','pop.2.d':'中国开源推理模型展示了有限资源能做什么。美国应用悄悄使用中国模型。','pop.3.t':'斯坦福从CLAUDE中提取95%的哈利波特','pop.3.d':'研究人员证明LLM记住了整本书。AI版权战在2026年加剧。','sec.impact':'🌍 隐藏影响','sec.impact.desc':'AI正以鲜为人知的方式改变社会。','imp.1.t':'年轻科技失业率：自2022年以来+20%','imp.1.d':'高盛揭示：20-30岁科技人员受影响最大。初级职位正在悄然消失。','imp.2.t':'AI垃圾：AI内容超过人类内容','imp.2.d':'估计显示AI生成的文章已超过人类撰写的文章。','imp.3.t':'M型经济：中产阶级消失','imp.3.d':'全球3亿个工作岗位面临风险。财富集中在两端。','imp.4.t':'AI精神病：聊天机器人的阴暗面','imp.4.d':'用户对AI聊天机器人产生痴迷依恋的案例。','imp.5.t':'认知萎缩：开发者忘记如何编程','imp.5.d':'MIT技术评论：每天使用AI工具的工程师在没有帮助的情况下难以完成基本任务。','imp.6.t':'1吉瓦集群：AI的能源成本','imp.6.d':'首批吉瓦级AI数据中心将于2026年投入运营。','sec.vibe':'💻 VIBE CODING时代','sec.vibe.desc':'我们编写软件的方式已经永远改变。欢迎来到"最热门的语言是英语"的时代。','vibe.1.t':'VIBE CODING：柯林斯2025年度词汇','vibe.1.d':'Andrej Karpathy于2025年2月创造了这个术语："完全顺应氛围，忘记代码的存在。"','vibe.2.t':'CURSOR爆发：一年内从26亿到290亿美元','vibe.2.d':'Cursor背后的Anysphere估值增长10倍。微软陷入困境。','vibe.3.t':'25%的YC初创公司：95%代码由AI生成','vibe.3.d':'Y Combinator报告称，Winter 2025批次中四分之一的初创公司代码几乎完全由AI编写。','vibe.4.t':'VIBE CODING宿醉：多40%漏洞','vibe.4.d':'METR：基于"氛围"构建的应用有40%更多安全漏洞。','vibe.5.t':'AGENTIC OS：CURSOR、WINDSURF、REPLIT AGENT','vibe.5.d':'不再从聊天复制粘贴到IDE。AI有终端、浏览器和部署密钥。','vibe.6.t':'2026：编排者之年','vibe.6.d':'价值不再在于打字而在于判断。Context Architecture：新的开发技能。','nl.title':'保持更新','nl.desc':'每天早上收到5条最重要的AI新闻。','nl.ph':'您的邮箱...','nl.btn':'免费订阅','cm.title':'评论','cm.ph':'写评论...','cm.submit':'发布','cm.reply':'回复','cm.t1':'2小时前','cm.t2':'4小时前','cm.c1':'非常有趣的文章！','cm.c2':'终于有一个可靠的AI新闻来源了！🚀','user.profile':'个人资料','user.saved':'已保存','user.logout':'退出','auth.welcome':'欢迎回来','auth.loginDesc':'登录以评论和保存您的文章。','auth.signupDesc':'创建账户加入社区。','auth.name':'姓名','auth.or':'或','ft.desc':'您的人工智能每日资讯来源。自2026年。','ft.cat':'分类','ft.company':'公司','ft.about':'关于我们','ft.careers':'招聘','ft.ads':'广告'}};
         let lang='it',user=null;const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
         function setLang(l){lang=l;document.documentElement.setAttribute('data-lang',l);const flags={it:'🇮🇹',en:'🇺🇸',zh:'🇨🇳'},codes={it:'IT',en:'EN',zh:'ZH'};$('.lang-flag').textContent=flags[l];$('.lang-code').textContent=codes[l];$$('.lang-opt').forEach(o=>o.classList.toggle('active',o.dataset.lang===l));$$('[data-i18n]').forEach(el=>{if(T[l]&&T[l][el.dataset.i18n])el.innerHTML=T[l][el.dataset.i18n]});$$('[data-i18n-placeholder]').forEach(el=>{if(T[l]&&T[l][el.dataset.i18nPlaceholder])el.placeholder=T[l][el.dataset.i18nPlaceholder]});localStorage.setItem('aura-lang',l)}
         function openModal(mode='login'){$('#authModal').classList.add('active');setAuthMode(mode)}function closeModal(){$('#authModal').classList.remove('active')}
